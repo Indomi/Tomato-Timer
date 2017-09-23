@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='wrap'>
+    <view class='timer-wrap'>
+      <view class='timer timer-left'>
+        <view class='circle leftcircle' animation="{{animationDataLeft}}"></view>
+      </view>
+      <view class='timer timer-right'>
+        <view class='circle rightcircle' animation="{{animationDataRight}}"></view>
+      </view>
+    </view>
+    <view class='last-time'>{{lastTime}}s</view>
+  </view>
+  <view>
+    <input type='number' placeholder='请输入时间(s)' confirm-type='done' class='input-box' bindinput='changeDuration' bindconfirm='changeDuration' bindblur='changeDuration' maxlength='5'></input>
+    <button wx:if="{{show}}"type='default' bindtap='startRotate'>开始倒计时</button>
+    <button wx:else type='default' bindtap='resetRotate'>重置</button>
+  </view>
+</view>

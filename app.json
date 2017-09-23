@@ -1,0 +1,35 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/settings/settings"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "番茄时钟",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "color":"#cdcdcd",
+    "selectedColor":"#2c2c2c",
+    "borderStyle":"white",
+    "list":[{
+      "selectedIconPath":"image/icon-index-t.png",
+      "iconPath":"image/icon-index-f.png",
+      "pagePath":"pages/index/index",
+      "text":"首页"
+    },{
+      "selectedIconPath":"image/icon-log-t.png",
+      "iconPath":"image/icon-log-f.png",
+      "pagePath":"pages/log/log",
+      "text":"日志"
+    },{
+      "selectedIconPath": "image/icon-settings-t.png",
+      "iconPath": "image/icon-settings-f.png",
+      "pagePath": "pages/settings/settings",
+      "text": "设置"      
+    }
+    ]
+  }
+}

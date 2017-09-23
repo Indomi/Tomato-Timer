@@ -1,0 +1,71 @@
+/**index.wxss**/
+.wrap{
+  width: 100%;
+  height: 800rpx;
+  background: #cdcdcd;
+}
+/*圆形进度条  */
+.timer-wrap{
+  position: relative;
+  width: 520rpx;
+  height: 520rpx;
+  left:50%;
+  margin-left: -260rpx;
+  top: 20%;
+}
+.timer-wrap .timer{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+}
+.timer-wrap .timer-right{
+  right: 0;
+}
+.timer-wrap .timer-left{
+  left: 0;
+}
+.timer-wrap .circle{
+  width: 500rpx;
+  height: 500rpx;
+  border: 10rpx solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  transform: rotate(-135deg);
+}
+.timer-wrap .rightcircle{
+  border-top: 10rpx solid #cdcdcd;
+  border-right: 10rpx solid #cdcdcd; 
+  right: 0; 
+}
+.timer-wrap .leftcircle{
+  border-bottom: 10rpx solid #cdcdcd;
+  border-left: 10rpx solid #cdcdcd; 
+  left: 0;
+}
+/*输入框  */
+.input-box{
+  height: 60rpx;
+  margin: 20rpx 10rpx;
+  border: 2px solid #cdcdcd;
+  border-radius: 10rpx;
+  text-align: center;
+}
+.input-placeholder{
+  text-align: center;
+}
+/*倒计时  */
+.last-time{
+  width: 360rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  text-align: center;
+  font-size: 100rpx;
+  color: #fff;
+  font-weight: 700;
+  position: absolute;
+  left: 26%;
+  top: 32%;
+}
