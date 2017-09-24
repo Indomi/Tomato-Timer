@@ -1,0 +1,14 @@
+<view class="settings-container">
+  <view class='setting-block'>
+    <text class='setting-title'>工作时长(分钟)</text>
+    <view class='body-view'>
+      <slider min='1' max='25' step='1' value='{{work_time}}' color='#cdcdcd' selected-color='#3889fd' bindchange='changeWorkTime' show-value></slider>
+    </view>
+  </view>
+  <view class='setting-block'>
+    <text class='setting-title'>休息时长(分钟)</text>
+    <view class='body-view'>
+      <slider min='1' max='25' step='1' value='{{rest_time}}' color='#cdcdcd' selected-color='#3889fd' bindchange='changeRestTime' show-value></slider>
+    </view>
+  </view>
+</view>

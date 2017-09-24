@@ -2,16 +2,16 @@
 .wrap{
   width: 100%;
   height: 800rpx;
-  background: #cdcdcd;
+  background: #3889fd;
 }
 /*圆形进度条  */
 .timer-wrap{
   position: relative;
-  width: 520rpx;
-  height: 520rpx;
+  width: 320rpx;
+  height: 320rpx;
   left:50%;
-  margin-left: -260rpx;
-  top: 20%;
+  margin-left: -160rpx;
+  top: 160rpx;
 }
 .timer-wrap .timer{
   width: 50%;
@@ -27,8 +27,8 @@
   left: 0;
 }
 .timer-wrap .circle{
-  width: 500rpx;
-  height: 500rpx;
+  width: 300rpx;
+  height: 300rpx;
   border: 10rpx solid #fff;
   border-radius: 50%;
   position: absolute;
@@ -36,22 +36,26 @@
   transform: rotate(-135deg);
 }
 .timer-wrap .rightcircle{
-  border-top: 10rpx solid #cdcdcd;
-  border-right: 10rpx solid #cdcdcd; 
+  border-top: 10rpx solid #3889fd;
+  border-right: 10rpx solid #3889fd; 
   right: 0; 
 }
 .timer-wrap .leftcircle{
-  border-bottom: 10rpx solid #cdcdcd;
-  border-left: 10rpx solid #cdcdcd; 
+  border-bottom: 10rpx solid #3889fd;
+  border-left: 10rpx solid #3889fd; 
   left: 0;
 }
 /*输入框  */
-.input-box{
+.timer-event{
+  width: 400rpx;
   height: 60rpx;
-  margin: 20rpx 10rpx;
-  border: 2px solid #cdcdcd;
-  border-radius: 10rpx;
+  margin: 0 auto;
+  border: none;
   text-align: center;
+  color:#fff;
+  border-bottom: 2px solid #fff;
+  position: relative;
+  top: 250rpx;
 }
 .input-placeholder{
   text-align: center;
@@ -66,6 +70,56 @@
   color: #fff;
   font-weight: 700;
   position: absolute;
-  left: 26%;
-  top: 32%;
+  left: 50%;
+  margin-left: -180rpx;
+  top: 22%;
+}
+/* 按钮样式 */
+.timer-choose button{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  border: none;
+  background: #32B17D;
+  font-size: 50rpx;
+  line-height: 200rpx;
+  color: #fff;
+  display: inline-block;
+  margin: 20rpx;
+}
+.timer-choose{
+
+  padding: 20rpx;
+  width: 480rpx;
+  margin: 0 auto;
+}
+.timer-slide{
+  height: 100rpx;
+  position: relative;
+  top: 280rpx;
+}
+.timer-slide button{
+  border:none;
+  width: 120rpx;
+  height: 120rpx;
+  padding: 0;
+}
+.timer-slide button image{
+  width: 80rpx;
+  height: 80rpx;
+  margin-top: 30rpx;
+}
+.finish-btn{
+  position: absolute;
+  bottom: 80rpx;
+  left: 50%;
+  margin-left: -100rpx;
+  width: 200rpx;
+  height: 100rpx;
+  font-size: 35rpx;
+  border: 2px solid #fff;
+  background: #3889fd!important;
+  color: #fff;
+  border-radius: 50rpx;
+  opacity: 0;
 }

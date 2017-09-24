@@ -1,0 +1,17 @@
+.settings-container{
+  width: 100%;
+  height: 370rpx;
+  background: #ddd;
+  padding: 25rpx 0;
+}
+.setting-block{
+  width: 700rpx;
+  height: 150rpx;
+  margin: 0 auto;
+  color: #ccc;
+  background: #fff;
+  font-size: 25rpx;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  margin-bottom: 25rpx;
+}

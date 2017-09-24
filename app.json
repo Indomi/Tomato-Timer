@@ -6,7 +6,7 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#3889fd",
     "navigationBarTitleText": "番茄时钟",
     "navigationBarTextStyle":"black"
   },
@@ -22,7 +22,7 @@
     },{
       "selectedIconPath":"image/icon-log-t.png",
       "iconPath":"image/icon-log-f.png",
-      "pagePath":"pages/log/log",
+      "pagePath":"pages/logs/logs",
       "text":"日志"
     },{
       "selectedIconPath": "image/icon-settings-t.png",
