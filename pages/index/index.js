@@ -1,130 +1,86 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const name = {
+  rest_time : '休息',
+  work_time : '工作'
+}
+const app = getApp();
 Page({
   data: {
-    animationDataLeft:{},
-    animationDataRight:{},
-    duration:5000,
-    show:true,
-    slideShow:true,
-    event:'',
+    isRun:false,
+    leftDeg:-135,
+    rightDeg:-135,
     minutes:'00',
     seconds:'00',
-    input:0,
     animationSlide:{},
     animationSlideBtnDown:{},
-    animationSlideBtnShow:{}
+    animationSlideBtnShow:{},
+    logTime:0,
+    id:''
   },
-  //进度条动画
-  circleAnimation:function(id){
-    var time=getApp().globalData[id]*30000;
-    var animationLeft = wx.createAnimation({
-      duration: time,
-      timingFunction: "linear",
-      delay: time
-    });
-    var animationRight = wx.createAnimation({
-      duration: time,
-      timingFunction: "linear",
-    });
+
+  bindKeyInput:function(e){
     this.setData({
-      animationDataLeft: animationLeft.rotate(45).step().export(),
-      animationDataRight: animationRight.rotate(45).step().export(),
-      show:false
+      id:e.detail.value
     });
+  },
+  //选择模式，开始计时
+  chooseTime: function (e) {
+    this.addLogData(e.currentTarget.dataset.type);
+    //获取全局数据
+    let fullTime = getApp().globalData[e.currentTarget.dataset.type];
+    let startTime = Date.now();
+    let halfTime = fullTime / 2;
+    fullTime = fullTime<10 ? '0'+fullTime : fullTime;
+    this.setData({
+      minutes: fullTime,
+      isRun:true,
+      logTime:startTime
+    });
+    //秒数计时
+    let stop = setInterval(function () {
+      let keepTime = Math.floor((Date.now()-startTime)/1000);
+      let seconds = this.data.seconds;
+      let m = this.data.minutes;
+        //计时器显示
+        if(seconds==0){
+          //秒数为0变59，分钟数减1
+          seconds = 59;
+          m = m>10?m-1:m;
+          m = m<10&&m!=='00' ? '0'+(m-1) : m;
+        }else if(seconds!=0){
+          //秒数减1
+          seconds--;
+          seconds = seconds<10 ? '0'+seconds:seconds;
+        }
+        //进度条显示
+        if(keepTime>0&&keepTime<=halfTime*60){
+          this.setData({
+            rightDeg: -135 + 180 * keepTime / (fullTime * 30)
+          });
+        }else if(keepTime=>halfTime*60&&keepTime<=fullTime*60){
+          this.setData({
+            leftDeg: -135 + 180 * (keepTime-halfTime*60) / (fullTime * 30)
+          });
+        }else{
+          this.setData({
+            rightDeg:-135,
+            leftDeg:-135
+          });
+        }
+        if (keepTime == fullTime * 60 || !this.data.isRun) {
+          seconds = '00';
+          m = '00';
+          clearInterval(stop);
+          this.stopTimer();
+        }
+        this.setData({
+          minutes: m,
+          seconds: seconds
+        });
+    }.bind(this), 1000);
+    //调用动画
     this.slideDown();
-  },
-  //选择休息模式
-  chooseRestTime: function () {
-    //获取全局数据
-    var resttime = getApp().globalData.rest_time;
-    var _this = this;
-    //分钟小于0补0
-    if (resttime < 10) {
-      resttime = '0' + resttime;
-    }
-    this.setData({
-      minutes: resttime
-    });
-    //秒数计时
-    var stop = setInterval(function () {
-      var time = _this.data.seconds;
-      var m = _this.data.minutes;
-      if (time == 0) {
-        _this.setData({
-          seconds: 59
-        });
-        if (m != 0) {
-          m--;
-          if (m < 10) { m = '0' + m; }
-          _this.setData({
-            minutes: m
-          });
-        }
-      } else if (time < 11) {
-        time -= 1;
-        _this.setData({
-          seconds: '0' + time
-        });
-      } else {
-        _this.setData({
-          seconds: time - 1
-        });
-      }
-      //判断结束
-      if (_this.data.minutes == 0 && _this.data.seconds == 0) {
-        clearInterval(stop);
-        _this.stopTimer();
-      }
-    }, 1000);
-    //调用动画
-    this.circleAnimation('rest_time');
-  },
-  //选择工作模式
-  chooseWorkTime: function () {
-    //获取全局数据
-    var worktime = getApp().globalData.work_time;
-    var _this = this;
-    //分钟小于0补0
-    if (worktime < 10) {
-      worktime = '0' + worktime;
-    }
-    this.setData({
-      minutes: worktime
-    });
-    //秒数计时
-    var stop = setInterval(function () {
-      var time = _this.data.seconds;
-      var m = _this.data.minutes;
-      if (time == 0) {
-        _this.setData({
-          seconds: 59
-        });
-        if(m!=0){
-          m--;
-          if(m<10){m='0'+m;}
-          _this.setData({
-            minutes:m
-          });
-        }
-      } else if (time < 11) {
-        time -= 1;
-        _this.setData({
-          seconds: '0' + time
-        });
-      } else {
-        _this.setData({
-          seconds: time - 1
-        });
-      }
-      //判断结束
-      if (_this.data.minutes==0&&_this.data.seconds == 0){
-        clearInterval(stop);
-      }
-    }, 1000);
-    //调用动画
-    this.circleAnimation('work_time');
   },
   //运行Timer动画
   slideDown:function(){
@@ -152,7 +108,8 @@ Page({
     });
   },
   stopTimer:function(){
-    var animation = wx.createAnimation({
+    let stopTime = Date.now();
+    let animation = wx.createAnimation({
       duration:1000,
       timingFunction:'linear'
     });
@@ -168,8 +125,14 @@ Page({
     this.setData({
       animationSlide:animation.export(),
       slideShow:true,
-      minutes:'00',
-      seconds:'00'
+      isRun:false,
+      leftDeg:-135,
+      rightDeg:-135
     });
+  },
+  addLogData:function(e){
+    let date = new Date(this.data.logTime);
+    let event = this.data.id ? this.data.id: name[e];
+    getApp().globalData.log.push(date.toLocaleDateString() + "--" + date.toLocaleTimeString() + "--" + event);
   }
 })

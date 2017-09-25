@@ -3,23 +3,23 @@
   <view class='wrap' animation="{{animationSlide}}">
     <view class='timer-wrap'>
       <view class='timer timer-left'>
-        <view class='circle leftcircle' animation="{{animationDataLeft}}"></view>
+        <view class='circle leftcircle' style="transform: rotate({{leftDeg}}deg);"></view>
       </view>
       <view class='timer timer-right'>
-        <view class='circle rightcircle' animation="{{animationDataRight}}"></view>
+        <view class='circle rightcircle' style="transform: rotate({{rightDeg}}deg);"></view>
       </view>
     </view>
     <view class='last-time'>{{minutes}}:{{seconds}}</view>
     <view class='timer-event'>
-      <input placeholder='取个名字吧' placeholder-style='color:#fff'></input>
+      <input placeholder='取个名字吧' placeholder-style='color:#fff' bindinput='bindKeyInput'></input>
     </view>
-    <view wx:if='{{slideShow}}' class="timer-slide" animation="{{animationSlideBtnDown}}">
+    <view wx:if='{{!isRun}}' class="timer-slide" animation="{{animationSlideBtnDown}}">
       <button plain='true' bindtap='slideDown'><image src='../../image/slide-down.png' mode='aspectFit'></image></button>
     </view>
   </view>
-  <view wx:if='{{slideShow}}' class='timer-choose'>
-    <button bindtap='chooseWorkTime'>工作</button>
-    <button bindtap='chooseRestTime'>休息</button>
+  <view wx:if='{{!isRun}}' class='timer-choose'>
+    <button bindtap='chooseTime' data-type='work_time'>工作</button>
+    <button bindtap='chooseTime' data-type='rest_time'>休息</button>
   </view>
   <button class='finish-btn' bindtap='stopTimer' animation="{{animationSlideBtnShow}}">结束</button>
 </view>

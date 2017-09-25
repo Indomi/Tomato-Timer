@@ -33,7 +33,7 @@
   border-radius: 50%;
   position: absolute;
   top: 0;
-  transform: rotate(-135deg);
+  transition: all 1s;
 }
 .timer-wrap .rightcircle{
   border-top: 10rpx solid #3889fd;
